@@ -1,0 +1,55 @@
+spring:
+  kafka:
+
+    bootstrap-servers:
+      localhost:9092
+
+    producer:
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      key-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      properties:
+        schema:
+          registry:
+            url: http://localhost:8081
+
+    consumer:
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      key-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      properties:
+        schema:
+          registry:
+            url: http://localhost:8081
+
+    streams:
+      application-id: streamApplication
+      auto-startup: true
+      bootstrap-servers: localhost:9092
+      properties:
+        schema:
+          registry:
+            url: http://localhost:8081
+        default:
+          key:
+            serde: io.confluent.kafka.streams.serdes.avro.GenericAvroSerde
+          value:
+            serde: io.confluent.kafka.streams.serdes.avro.GenericAvroSerde
+
+#Properties
+schema:
+  registry:
+    url: http://localhost:8081
+stream:
+  topic:
+    name: streamTopic
+person:
+  topic:
+    name: UserTopic
+change:
+  value:
+    field: password
+
+group:
+  name: firstGroup
+
+
+
