@@ -34,23 +34,10 @@ public class PersonProducerServiceImpl implements PersonProducerService {
         kafkaTemplate.send(streamTopic, genericRecord);
     }
 
-//    private GenericRecord buildRecord(Object person, Schema latestSchema) {
-//        try {
-//            String json = FromObjectToJsonConverter.convert(person);
-//            Decoder decoder = new DecoderFactory().jsonDecoder(latestSchema, json);
-//            DatumReader<GenericData.Record> reader =
-//                    new GenericDatumReader<>(latestSchema);
-//            return reader.read(null, decoder);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-
     private GenericRecord buildRecord(Object person, Schema latestSchema) {
         String json = FromObjectToJsonConverter.convert(person);
         return converter.convertToGenericDataRecord(json.getBytes(), latestSchema);
     }
-
 
     private String getLatestSchema() {
         try {

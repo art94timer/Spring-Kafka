@@ -7,7 +7,6 @@ public class FromObjectToJsonConverter {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
-
     public static String convert(Object object) {
         try {
             return objectMapper.writeValueAsString(object);

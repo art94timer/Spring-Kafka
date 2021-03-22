@@ -33,12 +33,11 @@ public class KafkaStreamConfig {
         return new CachedSchemaRegistryClient(schemaRegistryUrl, 100);
     }
 
-
     @Bean
     public KStream<String, GenericRecord> kStream(StreamsBuilder streamsBuilder) {
         KStream<String, GenericRecord> stream = streamsBuilder
-                .stream(streamTopic);
-        stream.mapValues((k, v) -> {
+                .<String,GenericRecord>stream(streamTopic)
+                .mapValues((k, v) -> {
             String password = v.get(changeValueField).toString();
             password = password.replaceAll(".", "*");
             v.put(changeValueField, password);

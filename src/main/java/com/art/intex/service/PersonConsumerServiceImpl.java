@@ -24,7 +24,6 @@ public class PersonConsumerServiceImpl implements PersonConsumerService {
         log.info(String.format(TEMPLATE, login, age, password));
     }
 
-
 }
 
 

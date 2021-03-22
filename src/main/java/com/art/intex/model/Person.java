@@ -10,10 +10,4 @@ public class Person {
     private String surname;
     private Integer age;
 
-    public Person() {
-        login = "";
-        password = "";
-        surname = "";
-        age = -1;
-    }
 }

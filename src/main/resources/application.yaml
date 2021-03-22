@@ -47,7 +47,6 @@ person:
 change:
   value:
     field: password
-
 group:
   name: firstGroup
 
